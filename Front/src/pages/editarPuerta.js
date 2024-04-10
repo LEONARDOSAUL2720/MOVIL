@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect, useRef  } from "react";
 import IPADRESS from "../../Config/IP_Local";
 import {
   View,
@@ -36,13 +36,24 @@ function EditarPuerta({route}) {
   const [userEmail, setUserEmail] = useState('');
   const [usuariosPuerta, setUsuariosPuerta] = useState([]); // Nuevo estado para almacenar los usuarios y sus rfid_id
   const [nuevoUsuario, setNuevoUsuario] = useState(""); // Estado 
+  const usuariosPuertaOriginalesRef = useRef([]);
 
+  useEffect(() => {
+    // Guardar una copia de los usuarios originales al montar el componente
+    usuariosPuertaOriginalesRef.current = usuarios;
+  }, [usuarios]);
+
+  // Restaurar los usuarios originales en caso de error
+  const restoreUsuariosOriginales = () => {
+    setUsuariosPuerta(usuariosPuertaOriginalesRef.current);
+  };
 
   useEffect(() => {
 
     setNumeroPuertaInput(numeroPuerta.toString());
     setIdPuerta(id_Puerta.toString());
     setUsuariosPuerta(usuarios);
+    
     
   }, [numeroPuerta, id_Puerta, usuarios]);
 
@@ -117,10 +128,10 @@ function EditarPuerta({route}) {
         );
       }
       console.log(usuarios)
-      setUsuariosPuerta([]);
+       // Restaurar los usuarios originales en caso de error
+       restoreUsuariosOriginales();
     }
-    // Vaciar setNuevoUsuario en caso de error
-    setUsuariosPuerta([]);
+    
   };
 
   const agregarUsuario = () => {
