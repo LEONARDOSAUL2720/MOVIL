@@ -1,6 +1,6 @@
 import { mongoose } from "mongoose";
 
-// modelo para el guardado de usarios 
+// modelo para el guardado de movimientos 
 
  const movimientosSchema = new mongoose.Schema({
     username:{

@@ -1,3 +1,5 @@
+// modelo para el guardado de movimientos 
+
 import { mongoose } from "mongoose"
 
 const puertaSchema = new mongoose.Schema({

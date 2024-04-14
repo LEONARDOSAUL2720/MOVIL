@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
+// modelo para el guardado de registros de acceso 
 
+import mongoose from 'mongoose';
 
 const registrosRFIDSchema = new mongoose.Schema({
 

@@ -1,3 +1,5 @@
+// modelo para el guardado de usuarios administradores "dueños de cada dispositivo" 
+
 import { mongoose } from "mongoose";
 
 const UserAdminSchema = new mongoose.Schema({
